@@ -1,9 +1,9 @@
 class Solution {
 public:
-    bool checkValid(vector<vector<int>>& matrix) {        
+    bool checkValid(vector<vector<int>>& matrix) { 
+        set<int> si;
         for (int i = 0, n = matrix.size(); i < n; ++i)
         {
-            set<int> si;
             for (int j = 0; j < n; ++j)
                 if (si.count(matrix[i][j]))
                     return false;
@@ -13,6 +13,7 @@ public:
                 if (si.count(matrix[j][i]))
                     return false;
                 else si.insert(matrix[j][i]);
+            si.clear();
         }
         return true;
     }
