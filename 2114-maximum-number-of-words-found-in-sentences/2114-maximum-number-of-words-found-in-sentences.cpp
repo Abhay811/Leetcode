@@ -8,10 +8,8 @@ public:
             for (char it2: it)
                 if (it2 == ' ')
                     c++;
-            if (c > m)
-                m = c;
+            m = c > m ? c : m;
         }
-            
         return m + 1;
     }
 };
