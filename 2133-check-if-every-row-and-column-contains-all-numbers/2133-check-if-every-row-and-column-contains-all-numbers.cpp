@@ -6,8 +6,7 @@ public:
             set<int> si, si2;
             for (int j = 0; j < n; ++j)
             {
-                if (si.count(matrix[i][j]))
-                    return false;
+                if (si.count(matrix[i][j])) return false;
                 else si.insert(matrix[i][j]);
                 if (si2.count(matrix[j][i])) return false;
                 else si2.insert(matrix[j][i]);
