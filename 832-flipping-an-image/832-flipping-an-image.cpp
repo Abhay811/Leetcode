@@ -5,8 +5,7 @@ public:
             reverse(it.begin(), it.end());
         for (auto &it : image)
             for (auto &it2 : it)
-                if (it2) it2 = 0;
-                else it2 = 1;
+                it2 ^= 1;
         return image;
     }
 };
