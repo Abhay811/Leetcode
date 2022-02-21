@@ -1,7 +1,6 @@
 class Solution {
 public:
     string convertToTitle(int n) {
-        int m = 308915776;
         string s = "";
         while (n)
         {
