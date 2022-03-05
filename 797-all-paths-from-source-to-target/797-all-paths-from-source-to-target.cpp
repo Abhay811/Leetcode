@@ -11,10 +11,8 @@ public:
         }
         vis[temp] = 1;
         for (int i = 0; i < graph[temp].size(); ++i)
-        {
             if (vis[graph[temp][i]] == 0)
                 solve(graph, graph[temp][i], t, res, vis);
-        }
         vis[temp] = 0;
         t.pop_back();
     }
