@@ -3,7 +3,7 @@ public:
     int lenLongestFibSubseq(vector<int>& arr) {
         unordered_map<int, int> m;
         int n = arr.size(), res = 0;
-        vector<vector<int>> dp(n, vector<int> (n));
+        int dp[n][n];
         for (int j = 0; j < n; ++j) {
             m[arr[j]] = j;
             for (int i = 0; i < j; ++i) {
