@@ -6,9 +6,7 @@ public:
             return 0;
         if (n < 3)
             return 1;
-        int prevInd = 2;
-        int secondlastInd = 1;
-        int thirdlastInd = 0;
+        int prevInd = 2, secondlastInd = 1, thirdlastInd = 0;
         for (int i = 3; i <= n; i++)
         {
             int t = v[prevInd] + v[secondlastInd] + v[thirdlastInd];
