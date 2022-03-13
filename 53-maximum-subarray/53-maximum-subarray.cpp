@@ -7,7 +7,7 @@ public:
         for (int i = 1; i < size; ++i)
         {
             dp[i] = nums[i] + (dp[i - 1] > 0 ? dp[i - 1] : 0);
-            m = max (m, dp[i]);
+            m = m > dp[i] ? m : dp[i];
         }
         return m;
     }
