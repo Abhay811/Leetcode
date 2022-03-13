@@ -6,9 +6,7 @@ public:
         {
             far = max (far, i + nums[i]);
             if (i == cur)
-            {
                 jumps++, cur = far;
-            }
         } 
         return jumps;
     }
