@@ -19,7 +19,7 @@ public:
                     res.push_back({nums[i], nums[j], nums[k]});
                     int l = nums[j], r = nums[k];
                     while (j < k && nums[j] == l) ++j;
-                    while (j < k && nums[k] == r) --r;
+                    while (j < k && nums[k] == r) --k;
                 }
             }
         }
