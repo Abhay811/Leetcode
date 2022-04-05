@@ -1,37 +1,28 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        std::vector<vector<int>> result;
-	if (nums.empty()) {
-		return result;
-	}
-
-	std::size_t n_size = nums.size();
-	std::sort(nums.begin(), nums.end());
-	for (int i = 0; i < n_size; ++i) {
-		// all numbers from now on will be greater than 0, no point in continuing
-		if (nums[i] > 0) break;
-
-		// we have seen this number & combo before; skip
-		if (i > 0 and nums[i] == nums[i-1]) continue;
-
-		int left = i+1, right = n_size - 1;
-		while (left < right) {
-			int sum = nums[i] + nums[left] + nums[right];
-			if (sum < 0) {
-				++left;
-			} else if (sum > 0) {
-				--right;
-			} else {
-				result.push_back({nums[i], nums[left], nums[right]});
-				int last_left = nums[left], last_right = nums[right];
-				// we have seen this number & combo before; skip
-				while (left < right && nums[left] == last_left) ++left;
-				while (left < right && nums[right] == last_right) --right;
-			}
-		}
-
-	}
-	return result;
+        vector<vector<int>> res;
+        if (nums.empty()) return res;
+        sort(nums.begin(), nums.end());
+        for (int i = 0, size = nums.size(); i < size; ++i)
+        {
+            if (nums[i] > 0) break;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int j = i + 1, k = size - 1;
+            while (j < k)
+            {
+                int t = nums[i] + nums[j] + nums[k];
+                if (t < 0) ++j;
+                else if (t > 0) k--;
+                else
+                {
+                    res.push_back({nums[i], nums[j], nums[k]});
+                    int l = nums[j], r = nums[k];
+                    while (j < k && nums[j] == l) ++j;
+                    while (j < k && nums[k] == r) --r;
+                }
+            }
+        }
+        return res;
     }
 };
