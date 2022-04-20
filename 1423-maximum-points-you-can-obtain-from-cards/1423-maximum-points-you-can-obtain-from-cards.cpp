@@ -6,7 +6,7 @@ public:
             lsum += cardPoints[i];
         
         int res = lsum;
-        const int ls = size - 1, ks = k - 1;
+        int ls = size - 1, ks = k - 1;
         for (int rsum = 0, i = 0; i < k; ++i)
         {
             rsum += cardPoints[ls - i];
