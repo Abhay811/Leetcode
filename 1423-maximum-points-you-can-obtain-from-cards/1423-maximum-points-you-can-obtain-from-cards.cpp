@@ -6,10 +6,11 @@ public:
             lsum += cardPoints[i];
         
         int res = lsum;
+        const int ls = size - 1, ks = k - 1;
         for (int rsum = 0, i = 0; i < k; ++i)
         {
-            rsum += cardPoints[size - 1 - i];
-            lsum -= cardPoints[k - 1 - i];
+            rsum += cardPoints[ls - i];
+            lsum -= cardPoints[ks - i];
             res = max(res, lsum + rsum);
         }
         return res;
