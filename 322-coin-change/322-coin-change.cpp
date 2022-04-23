@@ -6,7 +6,6 @@ public:
         for (auto it : coins)
             for (int i = it; i <= amount; ++i)
                 res[i] = min(res[i], res[i - it] + 1);
-        for (auto it : res) cout << it << " ";
         return res[amount] > amount ? -1 : res[amount];
     }
     
