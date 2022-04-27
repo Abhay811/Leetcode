@@ -18,8 +18,20 @@ public:
         if (root -> left) rangesum(root -> left, low, high);
         if (root -> right) rangesum(root -> right, low, high);
     }
-    int rangeSumBST(TreeNode* root, int low, int high) {
-        rangesum(root, low, high);
+    int inorder(TreeNode *root, int l, int r)
+    {
+        if (root) {
+            inorder(root -> left, l, r);
+            if (root -> val >= l && root -> val <= r)
+                sum += root -> val;
+            inorder(root -> right, l, r);
+        }
         return sum;
+    }
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        // rangesum(root, low, high);
+        if (!root) return 0;
+        return inorder(root, low, high);
+        // return sum;
     }
 };
