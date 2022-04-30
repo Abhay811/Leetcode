@@ -23,7 +23,7 @@ int find (int *rt, double wt[][MAX_ELEMENTS], int x){
     if (rt[x] != rx) {
         wt[x][rt[x]] = wt[x][rx] * wt[rx][rt[x]];
         wt[rt[x]][x] = 1/(wt[x][rt[x]]);
-//        printf("x %d rx %d, rt[x] %d, wt[x][rt[x]] %f, wt[x][rx] %f  wt[rx][rt[x]] %f \n", x, rx, rt[x], wt[x][rt[x]], wt[x][rx],  wt[rx][rt[x]]);
+
     }
     return (rt[x]);
 }
@@ -45,8 +45,7 @@ void ulink(int *rt, int *rnk, double wt[][MAX_ELEMENTS], double w, int x, int y)
         rt[ry] = rx;
         rnk[rx] += 1;
     }
-//    printf("x %d y %d rx %d, ry %d rt[rx] %d rt[ry] %d ", x, y, rx, ry, rt[rx], rt[ry]);
-//    printf("wt[%d][%d] %f wt[%d][%d] %f wt[rx][x] %f , w %f\n", rx, ry, wt[rx][ry], ry, rx,wt[ry][rx],  wt[rx][x], w);
+
     return;
 }
 
@@ -79,7 +78,6 @@ double* calcEquation(char *** equations, int equationsSize, int* equationsColSiz
                 id2 = num_strs;
                 num_strs++;
             }else id2--;
-    //        printf(" id1 %d, y %s  snum %d id2 %d num_strs %d\n", id1, s, snum,id2, num_strs);
             ulink(rt, rnk, wt, values[ii], id1, id2);
         }
     }
@@ -99,7 +97,7 @@ double* calcEquation(char *** equations, int equationsSize, int* equationsColSiz
         if (id1 == id2){
             res[ii] = 1;
         }
-//    printf("qii %d , x %s id1 %d, y %s, id2 %d, wt %f\n",ii,queries[ii][0], id1, queries[ii][1], id2,  wt[id1][id2] );
+
         else if (wt[id1][id2] != 1.0)
             res[ii] = wt[id1][id2];
         else {
