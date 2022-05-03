@@ -12,7 +12,6 @@ public:
         iota(parents.begin(), parents.end(), 0);
         int ans = 0, edges = 0;
         priority_queue<vector<int>> pq;
-
         for(int i=0;i<n;i++)
             for(int j=i+1;j<n;j++)
                 if(i!=j)
@@ -20,15 +19,13 @@ public:
         
         while(edges!=n-1){
             vector<int> edge = pq.top();
-            int p1 = getParent(parents, edge[1]);
-            int p2 = getParent(parents, edge[2]);
+            int p1 = getParent(parents, edge[1]), p2 = getParent(parents, edge[2]);
             if(p1!=p2){
                 ans += -1*edge[0];
                 parents[p1] = p2;
                 edges++; 
             }
             pq.pop();
-            
         }
         return ans;
     }
