@@ -1,46 +1,61 @@
 class Solution {
 public:
-   int maxScore_v2_gcd(int a, int b) {
-	if (a % b == 0) return b;
-	return maxScore_v2_gcd(b, a % b);
-}
-
-void maxScore_v2_(int idx, vector<int>& nums, vector<bool>& visited, vector<int>& vec, int& res) {
-
-	if (idx >= nums.size()) {
-		vector<int> tmp = vec;
-		sort(tmp.begin(), tmp.end());
-		int val = 0;
-		for (int i = 1; i <= tmp.size(); ++i) {
-			val += i * tmp[i - 1];
-		}
-		res = max(res, val);
-		return;
-	}
-
-	if (visited[idx])
-		return maxScore_v2_(idx + 1, nums, visited, vec, res);
-
-	visited[idx] = true;
-
-	for (int i = idx + 1; i < nums.size(); ++i) {
-		if (visited[i]) continue;
-		visited[i] = true;
-		vec.push_back(maxScore_v2_gcd(max(nums[idx], nums[i]), min(nums[idx], nums[i])));
-		maxScore_v2_(idx + 1, nums, visited, vec, res);
-		vec.pop_back();
-		visited[i] = false;
-	}
-
-	visited[idx] = false;
-	return;
-}
-
-int maxScore(vector<int>& nums) {
-	int res = 0;
-	vector<bool> visited(nums.size(), 0);
-	vector<int> vec;
-	maxScore_v2_(0, nums, visited, vec, res);
-	return res;
-}
+        int n = 0;
+    int m = 0;
+    // mask, gcd;
+    vector<pair<int, int>> g;
+    vector<int> dp;
+    int gcd(int a, int b)
+    {
+        if (b < a) return gcd(b, a);
+        if (a == 0) return b;
+        return gcd(b % a, a);
+    }
+    int bitset(int mask)
+    {
+        int cnt = 0;
+        while (mask != 0)
+        {
+            mask = mask &(mask - 1);
+            cnt++;
+        }
+        return cnt;
+    }
+    int maxScore(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        m = nums.size();
+        n = m / 2;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = i + 1; j < m; j++)
+            {
+                int mask = 0;
+                mask = mask | (1 << i);
+                mask = mask | (1 << j);
+                g.push_back({mask,  gcd(nums[i], nums[j])});
+            }
+        }
+        int l = 1 << m;
+        dp = vector<int> (l);
+        dp[0] = 0;
+        int mask = 0;
+        for (mask = 0; mask < l; mask++)
+        {
+            int cnt = bitset(mask);
+            if (cnt % 2 == 1) continue;
+            cnt = cnt/2;
+            int ans = 0;
+            for (auto& p : g)
+            {
+                int mk = p.first;
+                if ((mk & mask)== mk)
+                {
+                    int pre = mask - mk;
+                    ans = max(ans, p.second * cnt + dp[pre]);
+                }
+            }
+            dp[mask] = ans;
+        }
+        return dp[l - 1];
+    }
 };
