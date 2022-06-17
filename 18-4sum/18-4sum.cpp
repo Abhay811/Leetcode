@@ -7,10 +7,10 @@ public:
         sort(num.begin(),num.end());
         for (int i = 0; i < size; i++) 
         {
-            int target_3 = target - num[i];
+            long target_3 = target - num[i];
             for (int j = i + 1; j < size; j++) 
             {
-                int target_2 = target_3 - num[j];
+                long target_2 = target_3 - num[j];
                 int front = j + 1;
                 int back = size - 1;
                 while(front < back) 
