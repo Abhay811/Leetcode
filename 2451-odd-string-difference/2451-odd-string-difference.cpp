@@ -10,14 +10,14 @@ public:
             res3.emplace_back(words[2][j] - words[2][j - 1]);
         bool r = true, r2 = true, r3 = true;
         for (int i = 0; i < len - 1; i++)
+        {
             if (res[i] != res2[i])
                 r = false;
-        for (int i = 0; i < len - 1; i++)
             if (res[i] != res3[i])
                 r2 = false;
-        for (int i = 0; i < len - 1; i++)
             if (res2[i] != res3[i])
                 r3 = false;
+        }
         
         if (!r && !r2) res = res2;
         
